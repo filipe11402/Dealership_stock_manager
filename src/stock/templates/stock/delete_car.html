@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Apagar Carro | Car Manager{% endblock title %}
+{% block content %}
+<h2>Apagar {{ car.modelo }}</h2>
+<form action="" method="POST">
+{% csrf_token %}
+
+	<button type="button" class="btn btn-danger"><a href="{% url 'stock:home' %}" style="text-decoration: none; color: black;">Cancelar</a></button>
+	<button type="submit" class="btn btn-warning">Confirmar</button>
+</form>
+{% endblock content %}

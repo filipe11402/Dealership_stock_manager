@@ -1,0 +1,25 @@
+{% extends 'base_accounts.html' %}
+{% block title %}Login Dashboard | Car manager{% endblock title %}
+{% block content %}
+<form action="" method='POST' class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">{% csrf_token %}
+<h2 class="w3-center">Login</h2>
+ 
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fas fa-envelope"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="email" type="text" placeholder="Email">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fas fa-key"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="password" type="password" placeholder="Password">
+    </div>
+</div>
+
+<p class="w3-center">
+<button class="w3-button w3-section w3-blue w3-ripple"> Login </button>
+</p>
+</form>
+{% endblock content %}

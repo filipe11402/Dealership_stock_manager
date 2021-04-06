@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Modelos Disponiveis | Car Manager{% endblock title %}
+{% block content %}
+{% for message in messages %}
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+  {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+  {% endif %}
+{% endfor %}
+<div class="w3-row-padding w3-margin-bottom">
+  <div class="w3-quarter">
+    <div class="w3-container w3-red w3-padding-16">
+      <div class="w3-left"><i class="fas fa-sort-amount-up-alt w3-xxxlarge"></i></div>
+      <div class="w3-right">
+        <h3>{{ total_models }}</h3>
+      </div>
+      <div class="w3-clear"></div>
+      <h4>Modelos disponiveis</h4>
+    </div>
+  </div>
+</div>
+
+<div class="w3-panel">
+  	<div class="w3-row-padding" style="margin:0 -16px">
+    	<div class="w3-twothird">
+      		<h5>Marcas Disponiveis</h5>
+        	<table class="w3-table w3-striped w3-white">
+        		<tr>
+	        	<th>Modelo</th>
+	        	<th>Marca</th>
+	        	<th>Editar</th>
+            	<th>Apagar</th>
+        		</tr>    
+        	{% for model in models %}
+        	<tr>
+	        	<td>{{ model.modelo_carro }}</td>
+	        	<td>{{ model.marca }}</td>
+	        	<td><a href="{% url 'stock:edit-model' model.id %}"><i class="fas fa-edit"></i></a></td>
+            <td><a href="{% url 'stock:delete-model' model.id %}"><i class="fas fa-trash-alt"></i></a></td>
+        	</tr>
+        	{% endfor %}
+
+      		</table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

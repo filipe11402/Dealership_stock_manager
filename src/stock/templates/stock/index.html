@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Pagina Principal | Stock Manager{% endblock title %}
+
+{% block content %}
+{% for message in messages %}
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS  %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+  {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>  
+  {% endif %}
+{% endfor %}
+<!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fas fa-sort-amount-up-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{ quantidade }}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Stock disponivel</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-twothird">
+        <h5>Stock total</h5>
+        <table class="w3-table w3-striped w3-white">
+        <tr></tr>
+        	<th>Marca</th>
+        	<th>Modelo</th>
+        	<th>Imagem</th>
+        	<th>Kilometragem</th>
+        	<th>Ano de registo</th>
+        	<th>Nacional</th>
+        	<th>Editar</th>
+          <th>Apagar</th>
+        </tr>    
+        {% for car in cars %}
+        <tr>
+        	<td>{{ car.modelo.marca }}</td>
+        	<td>{{ car.modelo }}</td>
+        	<td><img src="{{ car.imagem.url }}" width="100px"></td>
+        	<td>{{ car.kilometragem }}kms</td>
+        	<td>{{ car.ano_registo }}</td>
+        	{% if car.nacional %}
+        	<td><i class="fas fa-check-circle"></i></td>
+        	{% else %}
+        	<td><i class="fas fa-times-circle"></i></td>
+        	{% endif %}
+        	<td><a href="{% url 'stock:edit-car' car.id %}"><i class="fas fa-edit"></i></a></td>
+          <td><a href="{% url 'stock:delete-car' car.id %}"><i class="fas fa-trash-alt"></i></a></td>
+        </tr>
+        {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
